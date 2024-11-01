@@ -14,6 +14,7 @@ export class AuthService {
   async register(email: string, password: string, first_name: string, last_name: string): Promise<any> {
     const hashedPassword = await bcrypt.hash(password, 10);
     const uniqueId = uuidv4(); 
+    const createdTime = new Date();
 
     return this.userService.create({
       id: uniqueId, 
@@ -22,6 +23,7 @@ export class AuthService {
       password: hashedPassword,
       first_name,
       last_name,
+      createdTime,
     });
   }
 

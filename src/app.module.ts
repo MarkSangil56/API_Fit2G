@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user/user.module';
 import { AuthModule } from './jwt/auth/auth.module';
+import { PartyLobbyModule } from './party_lobby/party-lobby.module'; 
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { AuthModule } from './jwt/auth/auth.module';
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
         const uri = configService.get<string>('MONGODB_URI');
-        console.log('MongoDB URI:', uri);  // Log the MongoDB URI to ensure it is loaded correctly
+        console.log('MongoDB URI:', uri);
         return {
           uri: uri,
         };
@@ -21,7 +22,8 @@ import { AuthModule } from './jwt/auth/auth.module';
       inject: [ConfigService],
     }),
     UserModule,
-    AuthModule,  // Add AuthModule here
+    AuthModule,
+    PartyLobbyModule, 
   ],
   controllers: [AppController],
   providers: [AppService],

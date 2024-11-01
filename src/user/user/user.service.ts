@@ -34,8 +34,8 @@ export class UserService {
   async updateLastContribution(userId: string, newContribution: number): Promise<User | null> {
     const user = await this.userModel.findOneAndUpdate(
       { $or: [{ id: userId }, { uid: userId }] },
-      { $set: { lastContribution: newContribution } },  // Update the lastContribution field
-      { new: true }  // Return the updated document
+      { $set: { lastContribution: newContribution } },
+      { new: true } 
     ).exec();
 
     return user;

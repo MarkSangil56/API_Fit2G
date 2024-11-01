@@ -36,16 +36,16 @@ export class User extends Document {
   @Prop()
   deviceToken: string;
 
-  @Prop({ type: Object })
-  created_time: object;
+  @Prop({ type: Date, default: Date.now }) 
+  created_time: Date;
 
-  @Prop({ type: Object })
-  last_active_time: object;
+  @Prop({ type: Date })
+  last_active_time: Date;
 
-  @Prop([String])  // Array of strings for followed
+  @Prop([String]) 
   followed: string[];
 
-  @Prop([String])  // Array of strings for followed_by
+  @Prop([String])
   followed_by: string[];
 
   @Prop()
